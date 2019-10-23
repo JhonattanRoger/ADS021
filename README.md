@@ -1,4 +1,2 @@
-PI - Desenvolvimento de Aplicação II
-=================
-
-Repositório criado para realização de projetos desta disciplina.
+# projectPI
+Tentativa de criação de todo o projeto do PI sozinho.
