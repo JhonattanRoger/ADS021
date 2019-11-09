@@ -7,19 +7,30 @@ use Illuminate\Http\Request;
 
 class UnidadeController extends Controller
 {
+    /* public function __construct()
+     {
+         $this->middleware('guest', ['except' => ['logout', 'getLogout']]);
+     }
+
+    */
+
     public function listar()
     {
-        return Unidade::all();
+       /* return Unidade::all(); */
+       return view('unidade.listar', ['unidades' => Unidade::paginate(5)]);
     }
 
     public function criar()
     {
-
+        return view('unidade.criar');
     }
 
     public function editar($id)
     {
         return Unidade::find($id);
+       /* $unidade = Unidade::find($id);
+        return view('unidade.editar', compact('unidade'));  */
+;
     }
 
     public function remover($id)
@@ -35,7 +46,7 @@ class UnidadeController extends Controller
 
 
         if($request->has('id')){
-            $unidade = Unidade::find($id);
+            $unidade = Unidade::find($request);
 
         }
 
@@ -47,5 +58,10 @@ class UnidadeController extends Controller
         $unidade->save();
 
         return redirect('unidade/listar');
+    }
+
+    public function update(Request $request, $id)
+    {
+
     }
 }

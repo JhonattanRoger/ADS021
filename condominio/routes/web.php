@@ -23,7 +23,7 @@ Route::group(['prefix' => 'reserva'], function(){
     Route::get('criar', 'ReservaController@criar');
     Route::get('{id}/editar', 'ReservaController@editar');
     Route::get('{id}/remover', 'ReservaController@remover');
-    Route::get('salvar', 'ReservaController@salvar');
+    Route::post('salvar', 'ReservaController@salvar');
 
 });
 
@@ -33,7 +33,7 @@ Route::group(['prefix' => 'condominio'], function(){
     Route::get('criar', 'CondominioController@criar');
     Route::get('{id}/editar', 'CondominioController@editar');
     Route::get('{id}/remover', 'CondominioController@remover');
-    Route::get('salvar', 'CondominioController@salvar');
+    Route::post('salvar', 'CondominioController@salvar');
 
 });
 
@@ -43,6 +43,21 @@ Route::group(['prefix' => 'unidade'], function(){
     Route::get('criar', 'UnidadeController@criar');
     Route::get('{id}/editar', 'UnidadeController@editar');
     Route::get('{id}/remover', 'UnidadeController@remover');
-    Route::get('salvar', 'UnidadeController@salvar');
+    Route::post('salvar', 'UnidadeController@salvar');
 
 });
+
+Route::group(['prefix' => 'area'], function(){
+
+    Route::get('listar', 'AreaController@listar');
+    Route::get('criar', 'AreaController@criar');
+    Route::get('{id}/editar', 'AreaController@editar');
+    Route::get('{id}/remover', 'AreaController@remover');
+    Route::post('salvar', 'AreaController@salvar');
+
+});
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/auth/logout', 'Auth\AuthController@logout');

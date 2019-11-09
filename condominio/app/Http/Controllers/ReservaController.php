@@ -7,14 +7,22 @@ use Illuminate\Http\Request;
 
 class ReservaController extends Controller
 {
+    /* public function __construct()
+     {
+         $this->middleware('guest', ['except' => ['logout', 'getLogout']]);
+     }
+
+    */
+
     public function listar()
     {
-        return Reserva::all();
+        /* return Reserva::all(); */
+        return view('reserva.listar', ['reservas' => Reserva::paginate(5)]);
     }
 
     public function criar()
     {
-
+        return view('reserva.criar');
     }
 
     public function editar($id)
