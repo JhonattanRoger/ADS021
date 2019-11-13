@@ -18,10 +18,10 @@
                         </ul>
                         @endif
 
-                            <form action="{{ action('UnidadeController@editar', $unidade) }}" method="post">
+                            <form action="{{ url('unidade/salvar') }}" method="post">
                                 @csrf
 
-                                <input type="hidden" name="method" value="PATCH" />
+                                <input type="hidden" name="id" value="{{ $unidade->id }}" />
 
                                 <div class="form-group row">
                                     <label for="nome" class="col-sm-2 col-form-label">Unidade: </label>

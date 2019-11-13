@@ -9,10 +9,10 @@ class UnidadeController extends Controller
 {
     /* public function __construct()
      {
-         $this->middleware('guest', ['except' => ['logout', 'getLogout']]);
+         $this->middleware('auth');
      }
 
-    */
+*/
 
     public function listar()
     {
@@ -27,9 +27,8 @@ class UnidadeController extends Controller
 
     public function editar($id)
     {
-        return Unidade::find($id);
-       /* $unidade = Unidade::find($id);
-        return view('unidade.editar', compact('unidade'));  */
+        $unidade = Unidade::find($id);
+        return view('unidade.editar', compact('unidade'));
 ;
     }
 
@@ -46,7 +45,7 @@ class UnidadeController extends Controller
 
 
         if($request->has('id')){
-            $unidade = Unidade::find($request);
+            $unidade = Unidade::find($request->id);
 
         }
 

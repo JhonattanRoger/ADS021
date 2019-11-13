@@ -9,10 +9,10 @@ class AreaController extends Controller
 {
    /* public function __construct()
     {
-        $this->middleware('guest', ['except' => ['logout', 'getLogout']]);
+        $this->middleware('auth');
     }
+    */
 
-   */
 
     public function listar()
     {
