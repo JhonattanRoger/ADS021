@@ -24,13 +24,21 @@ class ReservaRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'condominio_id' => 'required',
+            'unidade_id' => 'required',
+            'area_id' => 'required',
+            'data' => 'required|numeric'
         ];
     }
 
     public function messages()
     {
         return [
+            'condominio_id.required' => 'Campo Condominio é obrigatório',
+            'unidade_id.required' => 'Campo Unidade é obrigatório',
+            'area_id.required' => 'Campo Área é obrigatório',
+            'data.required' => 'Campo Data é obrigatório',
+            'data.numeric' => "Campo Data é numérico",
 
         ];
     }

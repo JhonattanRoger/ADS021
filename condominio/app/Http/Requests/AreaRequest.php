@@ -24,7 +24,10 @@ class AreaRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'condominio_id' => 'required',
+            'unidade_id' => 'required',
+            'local' => 'required|max:255',
+
         ];
     }
 
@@ -32,6 +35,10 @@ class AreaRequest extends FormRequest
     {
         return [
 
+            'condominio_id.required' => 'Campo Condominio é obrigatório',
+            'unidade_id.required' => 'Campo Unidade é obrigatório',
+            'local.required' => 'Campo Local é obrigatório',
+            'local.max' => 'Campo nome aceita até 255 caracteres',
         ];
     }
 }

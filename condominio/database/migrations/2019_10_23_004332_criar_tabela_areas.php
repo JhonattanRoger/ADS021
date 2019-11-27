@@ -17,6 +17,10 @@ class CriarTabelaAreas extends Migration
             $table->bigIncrements('id');
             $table->string('local');
             $table->string('situacao');
+            $table->bigInteger('condominio_id')->unsigned()->nullable();
+            $table->foreign('condominio_id')->references('id')->on('condominios')->onDelete('cascade');;
+            $table->bigInteger('unidade_id')->unsigned()->nullable();
+            $table->foreign('unidade_id')->references('id')->on('unidades')->onDelete('cascade');;
             $table->timestamps();
         });
     }

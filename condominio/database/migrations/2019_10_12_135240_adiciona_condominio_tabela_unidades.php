@@ -15,7 +15,7 @@ class AdicionaCondominioTabelaUnidades extends Migration
     {
         Schema::table('unidades', function (Blueprint $table) {
             $table->bigInteger('condominio_id')->unsigned()->nullable();
-            $table->foreign('condominio_id')->references('id')->on('condominios');
+            $table->foreign('condominio_id')->references('id')->on('condominios')->onDelete('cascade');;
         });
     }
 

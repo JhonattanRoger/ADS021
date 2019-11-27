@@ -24,6 +24,8 @@ Route::group(['prefix' => 'reserva'], function(){
     Route::get('{id}/editar', 'ReservaController@editar');
     Route::get('{id}/remover', 'ReservaController@remover');
     Route::post('salvar', 'ReservaController@salvar');
+    Route::get('obterUnidades/{id}', 'ReservaController@obterUnidades');
+    Route::get('obterAreas/{id}', 'ReservaController@obterAreas');
 
 });
 
@@ -54,18 +56,11 @@ Route::group(['prefix' => 'area'], function(){
     Route::get('{id}/editar', 'AreaController@editar');
     Route::get('{id}/remover', 'AreaController@remover');
     Route::post('salvar', 'AreaController@salvar');
+    Route::get('obterUnidades/{id}', 'AreaController@obterUnidades');
 
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('auth/logout', 'Auth\AuthController@logout');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/auth/logout', 'Auth\AuthController@logout');

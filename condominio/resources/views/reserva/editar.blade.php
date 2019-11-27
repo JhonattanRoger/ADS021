@@ -18,22 +18,10 @@
                         </ul>
                         @endif
 
-                            <form action="{{ action('UnidadeController@salvar', $unidade) }}" method="post">
+                            <form action="{{ action('UnidadeController@editar', $unidade) }}" method="post">
                                 @csrf
 
                                 <input type="hidden" id="id" name="id" value="{{$unidade->id}}" />
-
-                                <div class="form-group row">
-                                    <label for="condominio_id" class="col-sm-2 col-form-label">Condominio: </label>
-                                    <div class="col-sm-10">
-                                        <select name="condominio_id" id="condominio_id" class="form-control">
-                                            <option value="">Selecione</option>
-                                            @foreach($condominio as $condominio)
-                                                <option value="{{$condominio->id}}">{{$condominio->nome}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
 
                                 <div class="form-group row">
                                     <label for="nome" class="col-sm-2 col-form-label">Unidade: </label>

@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">{{ __('Nova Área') }}</div>
+                    <div class="card-header">{{ __('Alterar Area') }}</div>
 
 
                     <div class="card-body">
@@ -18,8 +18,10 @@
                         </ul>
                         @endif
 
-                            <form action="{{ url('area/salvar') }}" method="post">
+                            <form action="{{ action('AreaController@salvar', $area) }}" method="post">
                                 @csrf
+
+                                <input type="hidden" id="id" name="id" value="{{$area->id}}" />
 
                                 <div class="form-group row">
                                     <label for="condominio_id" class="col-sm-2 col-form-label">Condominio: </label>
@@ -33,32 +35,22 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group row">
-                                    <label for="unidade_id" class="col-sm-2 col-form-label">Unidade: </label>
-                                    <div class="col-sm-10">
-                                        <select name="unidade_id" id="unidade_id" class="form-control">
-                                            <option value="">Selecione</option>
-                                            @foreach($unidade as $unidade)
-                                                <option value="{{$unidade->id}}">{{$unidade->numero_unidade}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
+
 
                                 <div class="form-group row">
                                     <label for="local" class="col-sm-2 col-form-label">Local: </label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="local" name="local">
+                                        <input type="text" class="form-control" id="local" name="local" value="{{ $area->local }}">
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label for="situacao" class="col-sm-2 col-form-label">Situação: </label>
                                     <div class="col-sm-10">
-                                        <input type="radio" name="situacao" checked="checked" value="1"/>Ativo
-                                        <input type="radio" name="situacao" value="0"/>Inativo
+                                        <input type="text" class="form-control" id="situacao" name="situacao" value="{{ $area->situacao }}">
                                     </div>
                                 </div>
+
 
 
                                 <button type="submit" class="btn btn-primary">Salvar</button>
@@ -74,28 +66,4 @@
             </div>
         </div>
     </div>
-@endsection
-
-@section('js')
-    <script>
-        $('#condominio_id').change(function () {
-
-            var idCondominio = $(this).val();
-
-            $.get('/area/obterUnidades/' + idCondominio, function (unidades) {
-
-                $('#unidade_id').empty();
-
-                $.each(unidades, function (key, value) {
-
-                    $('#unidade_id').append('<option value = ' + value.id + ' > ' + value.numero_unidade + ' </option>');
-
-                });
-
-            });
-
-        });
-
-
-    </script>
 @endsection

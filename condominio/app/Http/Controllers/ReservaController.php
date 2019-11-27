@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Reserva;
+use App\Unidade;
+use App\Condominio;
+use App\Area;
+use App\Http\Requests\ReservaRequest;
+
 use Illuminate\Http\Request;
 
 class ReservaController extends Controller
@@ -16,18 +21,29 @@ class ReservaController extends Controller
 
     public function listar()
     {
-        /* return Reserva::all(); */
-        return view('reserva.listar', ['reservas' => Reserva::paginate(5)]);
+        $area = Area::all();
+        $unidade = Unidade::all();
+        $condominio = Condominio::all();
+        $reserva = Reserva::all();
+        return view('reserva.listar', ['reservas' => Reserva::paginate(5)], compact('reserva', 'area', 'unidade', 'condominio'));
     }
 
     public function criar()
     {
-        return view('reserva.criar');
+        $condominio = Condominio::all();
+        $unidade = Unidade::all();
+        $area = Area::all();
+        return view('reserva.criar', compact('area', 'unidade', 'condominio'));
     }
 
     public function editar($id)
     {
-        return Reserva::find($id);
+        $reserva = Reserva::find($id);
+        $area = Area::all();
+        $unidade = Unidade::all();
+        $condominio = Condominio::all();
+
+        return view('reserva.editar', compact('reserva', 'condominio', 'unidade', 'area'));
     }
 
     public function remover($id)
@@ -37,7 +53,7 @@ class ReservaController extends Controller
         return redirect('reserva/listar');
     }
 
-    public function salvar(Request $request)
+    public function salvar(ReservaRequest $request)
     {
         $reserva = new Reserva();
 
@@ -48,12 +64,23 @@ class ReservaController extends Controller
         }
 
         $reserva->condominio_id = $request->condominio_id;
-        $reserva->data = $request->data;
-        $reserva->area_id = $request->area_id;
         $reserva->unidade_id = $request->unidade_id;
+        $reserva->area_id = $request->area_id;
+        $reserva->data = $request->data;
+
         $reserva->save();
 
         return redirect('reserva/listar');
+    }
+
+    public function obterUnidades($id)
+    {
+        return Condominio::find($id)->unidade;
+    }
+
+    public function obterAreas($id)
+    {
+        return Condominio::find($id)->area;
     }
 
 }

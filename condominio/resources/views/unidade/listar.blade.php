@@ -19,6 +19,7 @@
                             <br>
 
                             <tr>
+                                <th style="text-align: center">Condominio</th>
                                 <th style="text-align: center">Unidade</th>
                                 <th style="text-align: center">Proprietário</th>
                                 <th style="text-align: center">CPF</th>
@@ -29,6 +30,7 @@
 
                             @foreach($unidades as $unidade)
                             <tr>
+                                <td style="text-align: center">{{ $unidade->condominio->nome }}</td>
                                 <td style="text-align: center">{{ $unidade->numero_unidade }}</td>
                                 <td style="text-align: center">{{ $unidade->proprietario }}</td>
                                 <td style="text-align: center">{{ $unidade->cpf }}</td>

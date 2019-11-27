@@ -19,21 +19,22 @@
                             <br>
 
                             <tr>
+                                <th style="text-align: center">Condominio</th>
                                 <th style="text-align: center">Unidade</th>
-                                <th style="text-align: center">Proprietário</th>
-                                <th style="text-align: center">CPF</th>
-                                <th style="text-align: center">E-mail</th>
-                                <th style="text-align: center">Telefone</th>
+                                <th style="text-align: center">Área</th>
+                                <th style="text-align: center">Data</th>
                                 <th style="text-align: center">Ações</th>
                             </tr>
 
                             @foreach($reservas as $reserva)
                             <tr>
-                                <td style="text-align: center">{{ $reserva->numero_unidade }}</td>
-                                <td style="text-align: center">{{ $reserva->proprietario }}</td>
-                                <td style="text-align: center">{{ $reserva->cpf }}</td>
-                                <td style="text-align: center">{{ $reserva->email }}</td>
-                                <td style="text-align: center">{{ $reserva->telefone }}</td>
+                                <td style="text-align: center">{{ $reserva->condominio->nome}}</td>
+                                <td style="text-align: center">{{ $reserva->unidade->numero_unidade }}</td>
+                                <td style="text-align: center">{{ $reserva->area->local }}</td>
+                                <td style="text-align: center">{{ $reserva->data }}</td>
+
+
+
                                 <td style="text-align: center">
                                     <a href="{{ url('reserva/'.$reserva->id.'/editar') }}" class="btn btn-primary">Editar</a>
                                     <a href="{{ url('reserva/'.$reserva->id.'/remover') }}" class="btn btn-danger" onclick="return confirm('Certeza que deseja apagar?')">Remover</a>

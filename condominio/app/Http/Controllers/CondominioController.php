@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Condominio;
+use App\Http\Requests\CondominioRequest;
 use Illuminate\Http\Request;
 
 class CondominioController extends Controller
@@ -16,7 +17,7 @@ class CondominioController extends Controller
 
     public function listar()
     {
-        /* return Condominio::all(); */
+
         return view('condominio.listar', ['condominios' => Condominio::paginate(5)]);
     }
 
@@ -27,7 +28,8 @@ class CondominioController extends Controller
 
     public function editar($id)
     {
-        return Condominio::find($id);
+        $condominio = Condominio::find($id);
+        return view('condominio.editar', compact('condominio'));
     }
 
     public function remover($id)
@@ -37,13 +39,13 @@ class CondominioController extends Controller
         return redirect('condominio/listar');
     }
 
-    public function salvar(Request $request)
+    public function salvar(CondominioRequest $request)
     {
         $condominio = new Condominio();
 
 
         if($request->has('id')){
-            $condominio = Condominio::find($id);
+            $condominio = Condominio::find($request->id);
 
         }
 
